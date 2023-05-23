@@ -1,4 +1,4 @@
-# Contributing to testgeb
+# Contributing to testgen
 Thank you for your interest in contributing to testgen! We welcome contributions from the community to help improve and grow the project. This document outlines the guidelines and information on how to contribute.
 
 ## Getting Started
