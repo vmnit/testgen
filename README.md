@@ -2,6 +2,11 @@
 
 The Test Template Generator is a Python script that automates the creation of a template file containing unit test cases for functions in a given source file. It saves you time by generating the initial structure of test cases, allowing you to focus on writing test assertions and verifying the correctness of your code.
 
+The original file was written by user [hoefling](https://stackoverflow.com/users/2650249/hoefling) in following answer as custom tool:
+[Stackoverflow link] (https://stackoverflow.com/a/56890821/928726)
+
+I've modified for my purpose and added some features, including putting function names and its argument in the testcase which we want to test. It will reduce some work on user's side. I'm planning to add more features.
+
 ## Features
 
 - Automatically generates a template file with unit test cases for functions in a source file.
