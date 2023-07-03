@@ -54,11 +54,20 @@ class TestModuleGenerator(ast.NodeVisitor):
         return self.linesep.join(lines).strip()
 
     def visit_FunctionDef(self, node: ast.FunctionDef):
-        arg_self = 'self' if self.current_cls is not None else ''
         arguments = [arg.arg for arg in node.args.args]
+        parametrize_args = [*arguments, 'expected'] # append expected argument
+
+        test_func_args = []
+        if self.current_cls is not None is not None:
+            test_func_args.append('self')
+        test_func_args.extend(parametrize_args)
+
+        parameter_values = ["None"] * len(parametrize_args)
         self.lines.extend([
-            '    ' * self.indent + f'def test_{node.name}({arg_self}):',
-            '    ' * (self.indent + 1) + f'# {self.module_name}.{node.name} ({",".join(arguments)})',
+            '    ' * self.indent + f'@pytest.mark.parametrize("{", ".join(parametrize_args)}",',
+            '    ' * self.indent + f'                        [{", ".join(parameter_values)}])',
+            '    ' * self.indent + f'def test_{node.name}({", ".join(test_func_args)}):',
+            '    ' * (self.indent + 1) + f'# assert {self.module_name}.{node.name} ({", ".join(arguments)}) == expected',
             '    ' * (self.indent + 1) + 'assert False, "not implemented"',
             self.linesep,
         ])
