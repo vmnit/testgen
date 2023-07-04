@@ -65,7 +65,7 @@ class TestModuleGenerator(ast.NodeVisitor):
         parameter_values = ["None"] * len(parametrize_args)
         self.lines.extend([
             '    ' * self.indent + f'@pytest.mark.parametrize("{", ".join(parametrize_args)}",',
-            '    ' * self.indent + f'                        [{", ".join(parameter_values)}])',
+            '    ' * self.indent + f'                        [({", ".join(parameter_values)})])',
             '    ' * self.indent + f'def test_{node.name}({", ".join(test_func_args)}):',
             '    ' * (self.indent + 1) + f'# assert {self.module_name}.{node.name} ({", ".join(arguments)}) == expected',
             '    ' * (self.indent + 1) + 'assert False, "not implemented"',
